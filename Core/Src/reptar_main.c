@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include "reptar_main.h"
 #include "sd.h"
+#include "low_power.h"
 
 
 extern UART_HandleTypeDef 	DEBUG_UART_HANDLE;
@@ -25,7 +26,7 @@ void reptar_printf(const char *fmt, ...)
 
 error_code_t reptar_init (void)
 {
-	uint8_t retval = E_OK;
+	error_code_t retval = E_OK;
 	RTC_DateTypeDef gDate;
 	RTC_TimeTypeDef gTime;
 
@@ -38,6 +39,11 @@ error_code_t reptar_init (void)
 
 	HAL_Delay(1000);
 	retval = sd_mount();
+
+	/* Include this when you have an actual interrupt source
+	low_power_enter_stop();
+	retval = low_power_exit_stop();
+	*/
 
 	return retval;
 }

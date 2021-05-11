@@ -36,7 +36,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include <string.h>
 #include "ff_gen_drv.h"
-#include "user_diskio_spi.h"
+#include "SD_diskio.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -83,7 +83,7 @@ DSTATUS USER_initialize (
 )
 {
   /* USER CODE BEGIN INIT */
-		return USER_SPI_initialize(pdrv);
+		return SD_initialize(pdrv);
   /* USER CODE END INIT */
 }
 
@@ -97,7 +97,7 @@ DSTATUS USER_status (
 )
 {
   /* USER CODE BEGIN STATUS */
-		return USER_SPI_status(pdrv);
+		return SD_status(pdrv);
   /* USER CODE END STATUS */
 }
 
@@ -117,7 +117,7 @@ DRESULT USER_read (
 )
 {
   /* USER CODE BEGIN READ */
-    	return USER_SPI_read(pdrv, buff, sector, count);
+    	return SD_read(pdrv, buff, sector, count);
   /* USER CODE END READ */
 }
 
@@ -139,7 +139,7 @@ DRESULT USER_write (
 {
   /* USER CODE BEGIN WRITE */
   /* USER CODE HERE */
-    	return USER_SPI_write(pdrv, buff, sector, count);
+    	return SD_write(pdrv, buff, sector, count);
   /* USER CODE END WRITE */
 }
 #endif /* _USE_WRITE == 1 */
@@ -159,7 +159,7 @@ DRESULT USER_ioctl (
 )
 {
   /* USER CODE BEGIN IOCTL */
-    	return USER_SPI_ioctl(pdrv, cmd, buff);
+    	return SD_ioctl(pdrv, cmd, buff);
   /* USER CODE END IOCTL */
 }
 #endif /* _USE_IOCTL == 1 */
